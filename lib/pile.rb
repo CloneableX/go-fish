@@ -16,4 +16,8 @@ class Pile
   def first
     @cards.first
   end
+
+  def deal(card_num)
+    @cards.shift(card_num)
+  end
 end

@@ -14,4 +14,8 @@ describe Pile, '#initialize' do
   it 'should not ordered' do
     expect(pile.first).not_to eq(Card.new(1))
   end
+
+  it 'should deal some cards' do
+    expect(pile.deal(7).size).to eq(7)
+  end
 end
