@@ -1,6 +1,5 @@
 class Card
   attr_reader :rank
-  protected :rank
 
   def initialize(rank)
     @rank = rank
