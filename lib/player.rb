@@ -13,11 +13,14 @@ class Player
   end
 
   def answer(rank)
-    unless @cards.include?(Card.new(rank))
+    target_card = Card.new(rank)
+    unless @cards.include?(target_card)
       puts "Go Fish!"
       return
     end
-    return @cards.select! { |card| card == Card.new(rank) }
+    cards =  @cards.select { |card| card == target_card }
+    @cards.delete_if { |card| card == target_card }
+    return cards
   end
 
   def count_score(card)
@@ -30,5 +33,9 @@ class Player
 
   def card_size
     @cards.size
+  end
+
+  def receipt_cards(cards)
+    @cards.concat(cards)
   end
 end

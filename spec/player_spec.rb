@@ -30,6 +30,7 @@ describe Player do
     it 'should give all cards about this rank' do
       cards = player.answer(3)
       expect(cards.size).to eq(2)
+      expect(player.card_size).to eq(2)
     end
   end
 
