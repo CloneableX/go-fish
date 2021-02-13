@@ -1,8 +1,9 @@
 class Pile
-  def initialize
+  def initialize(shuffle_seed)
     @cards = Array.new
     (0...52).each { |index| @cards << Card.new(index % 13 + 1) }
-    @cards.shuffle!
+    shuffle_seed = Random.new_seed if shuffle_seed.nil?
+    @cards.shuffle!(random: Random.new(shuffle_seed))
   end
 
   def size
