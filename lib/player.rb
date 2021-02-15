@@ -39,6 +39,7 @@ class Player
 
   def receipt_cards(cards)
     @cards.concat(cards)
+    count_score(cards.first)
   end
 
   def clear_cards

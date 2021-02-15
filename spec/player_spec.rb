@@ -48,4 +48,14 @@ describe Player do
       expect(score_player.card_size).to eq(expect_cards_size)
     end
   end
+
+  describe '#receipt_cards' do
+    it 'should add score 1 when receipt cards as 4 same cards' do
+      score = player.score
+      cards = [Card.new(3), Card.new(3)]
+      puts "#receipt_cards "
+      player.receipt_cards(cards)
+      expect(player.score).to eq(score + 1)
+    end
+  end
 end

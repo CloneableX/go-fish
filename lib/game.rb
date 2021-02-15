@@ -41,7 +41,7 @@ class Game
   
   def deal_card(player, asked_rank)
     cards = @pile.deal(1)
-    player.receipt_cards(cards)
+    player.receipt_cards(cards) unless cards.empty?
     return true if cards.first == Card.new(asked_rank)
     return false
   end
