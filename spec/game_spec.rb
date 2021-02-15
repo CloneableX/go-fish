@@ -72,8 +72,11 @@ describe Game do
   describe '#deal_card' do
     RSpec.configure {|c| c.mock_with :rspec}
 
-    it 'should return true when deal card as aksed rank' do
+    before(:each) do
       allow_message_expectations_on_nil
+    end
+
+    it 'should return true when deal card as aksed rank' do
       allow(game.pile).to receive(:deal).and_return([Card.new(1)])
 
       card_size = current_player.card_size
@@ -83,8 +86,14 @@ describe Game do
     end
 
     it 'should return false when deal card not as aksed rank' do
-      allow_message_expectations_on_nil
       allow(game.pile).to receive(:deal).and_return([Card.new(1)])
+
+      deal_result = game.deal_card(current_player, 2)
+      expect(deal_result).to_not be
+    end
+
+    it 'should return false when deal cards empty' do
+      allow(game.pile).to receive(:deal).and_return([])
 
       deal_result = game.deal_card(current_player, 2)
       expect(deal_result).to_not be
