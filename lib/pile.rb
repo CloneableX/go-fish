@@ -1,3 +1,5 @@
+require_relative "../lib/card"
+
 class Pile
   def initialize(shuffle_seed)
     @cards = Array.new

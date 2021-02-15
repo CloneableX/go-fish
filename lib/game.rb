@@ -1,3 +1,7 @@
+require_relative "../lib/pile"
+require_relative "../lib/player"
+require_relative "../lib/computer_player"
+
 class Game
   attr_reader :pile
   attr_writer :players
@@ -66,3 +70,5 @@ class Game
     return @players.max { |player, other_player| player.score <=> other_player.score }
   end
 end
+
+Game.new.start
