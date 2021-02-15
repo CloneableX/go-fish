@@ -38,6 +38,9 @@ class Game
 
   def play_one_round
     rank = current_player.ask
+    while rank.nil?
+      rank = current_player.ask
+    end
     ask_result = ask_card(current_player, other_player, rank)
     deal_result = deal_card(current_player, rank) unless ask_result 
     next_player unless ask_result || deal_result

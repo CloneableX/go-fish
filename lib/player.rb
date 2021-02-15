@@ -13,7 +13,10 @@ class Player
   def ask
     show_cards
     print 'Please input asked rank:'
-    gets.chomp.to_i
+    asked_rank = gets.chomp.to_i
+    return asked_rank if @cards.include?(Card.new(asked_rank))
+    puts "#{asked_rank} not valid asked rank. Please reinput!"
+    return nil
   end
 
   def answer(rank)
@@ -31,6 +34,7 @@ class Player
     if @cards.count(card) == 4
       @score += 1
       @cards.delete_if { |compared_card| compared_card == card }
+      puts "Collect 4 cards rank #{card.rank} !"
     end
     return @score
   end

@@ -20,6 +20,11 @@ describe Player do
       rank = player.ask
       expect(cards).to include(Card.new(rank))
     end
+
+    it 'should reinput when asked rank not in hand' do
+      allow(player).to receive(:gets).and_return("2")
+      expect(player.ask).to be_nil
+    end
   end
 
   describe '#answer' do
