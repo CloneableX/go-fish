@@ -42,11 +42,14 @@ class Game
     deal_result = deal_card(current_player, rank) unless ask_result 
     next_player unless ask_result || deal_result
   end
-  
+
   def deal_card(player, asked_rank)
     cards = @pile.deal(1)
     player.receipt_cards(cards) unless cards.empty?
-    return true if cards.first == Card.new(asked_rank)
+    if cards.first == Card.new(asked_rank)
+      puts "Deal Card: #{asked_rank}"
+      return true 
+    end
     return false
   end
 

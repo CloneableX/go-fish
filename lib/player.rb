@@ -2,7 +2,7 @@ class Player
   attr_accessor :score
   
   def initialize(cards)
-    @cards = cards
+    @cards = cards.sort { |card, other_card| card.rank <=> other_card.rank }
     @score = 0
   end
   
@@ -11,6 +11,7 @@ class Player
   end
 
   def ask
+    show_cards
     print 'Please input asked rank:'
     gets.chomp.to_i
   end
@@ -40,6 +41,7 @@ class Player
 
   def receipt_cards(cards)
     @cards.concat(cards)
+    @cards.sort! { |card, other_card| card.rank <=> other_card.rank }
     count_score(cards.first)
   end
 
@@ -49,5 +51,10 @@ class Player
 
   def cards_empty?
     @cards.empty?
+  end
+
+  def show_cards
+    print 'Your Cards: '
+    puts @cards.map { |card| card.rank }.join(',')
   end
 end
