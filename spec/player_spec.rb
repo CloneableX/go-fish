@@ -52,9 +52,7 @@ describe Player do
   describe '#receipt_cards' do
     it 'should add score 1 when receipt cards as 4 same cards' do
       score = player.score
-      cards = [Card.new(3), Card.new(3)]
-      puts "#receipt_cards "
-      player.receipt_cards(cards)
+      player.receipt_cards([Card.new(3), Card.new(3)])
       expect(player.score).to eq(score + 1)
     end
   end

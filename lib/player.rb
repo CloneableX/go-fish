@@ -11,6 +11,7 @@ class Player
   end
 
   def ask
+    print 'Please input asked rank:'
     gets.chomp.to_i
   end
 

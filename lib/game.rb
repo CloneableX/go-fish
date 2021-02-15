@@ -56,8 +56,14 @@ class Game
   end
 
   def start
+    puts "Welcom Play Game: Go Fish!"
     while !cards_empty?
       play_one_round
+    end
+    if winner.is_a? ComputerPlayer
+      puts 'Winner is Computer'
+    else
+      puts 'Winner is You'
     end
     return winner
   end
@@ -70,5 +76,3 @@ class Game
     return @players.max { |player, other_player| player.score <=> other_player.score }
   end
 end
-
-Game.new.start
