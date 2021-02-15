@@ -123,4 +123,29 @@ describe Game do
       expect(game.winner).to eq(player)
     end
   end
+
+  describe '#supply_cards' do
+    let(:player) { Player.new([]) }
+    let(:pile) { Pile.new(nil) }
+
+    it 'should not supply cards when pile is empty' do
+      game.pile.clear
+      game.supply_cards(player)
+      expect(player.cards_empty?).to be
+    end
+
+    it 'should supply 7 cards when pile cards greater than and equal 7' do
+      pile.deal(45)
+      game.pile = pile
+      game.supply_cards(player)
+      expect(player.card_size).to eq(7)
+    end
+
+    it 'should supply all pile cards when pile cards less than 7' do
+      pile.deal(46)
+      game.pile = pile
+      game.supply_cards(player)
+      expect(player.card_size).to eq(6)
+    end
+  end
 end

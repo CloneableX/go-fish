@@ -3,7 +3,7 @@ require_relative "../lib/player"
 require_relative "../lib/computer_player"
 
 class Game
-  attr_reader :pile
+  attr_accessor :pile
   attr_writer :players
 
   def initialize
@@ -41,6 +41,8 @@ class Game
     ask_result = ask_card(current_player, other_player, rank)
     deal_result = deal_card(current_player, rank) unless ask_result 
     next_player unless ask_result || deal_result
+    supplied_players = @players.select { |player| player.cards_empty? }
+    supplied_players.each { |player| supply_cards(player) }
   end
 
   def deal_card(player, asked_rank)
@@ -61,6 +63,7 @@ class Game
   def start
     puts "Welcom Play Game: Go Fish!"
     while !cards_empty?
+      puts "== Your Score: #{@players.first.score}, Computer Player Score: #{@players.last.score} =="
       play_one_round
     end
     if winner.is_a? ComputerPlayer
@@ -77,5 +80,10 @@ class Game
 
   def winner
     return @players.max { |player, other_player| player.score <=> other_player.score }
+  end
+
+  def supply_cards(player)
+    return if @pile.empty?
+    player.receipt_cards(@pile.deal(7))
   end
 end
