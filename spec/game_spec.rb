@@ -99,4 +99,28 @@ describe Game do
       expect(deal_result).to_not be
     end
   end
+
+  describe '#start' do
+    it 'should end game when pile and cards of all player is empty' do
+      game.clear_cards
+      winner = game.start
+      expect(winner).to_not be_nil
+    end
+  end
+
+  describe '#cards_empty?' do
+    it 'should return true when pile and all players cards is empty' do
+      game.clear_cards
+      expect(game.cards_empty?).to be
+    end
+  end
+
+  describe '#winner' do
+    it 'should return highest score player' do
+      player = Player.new([])
+      player.score = 7
+      game.players = [ComputerPlayer.new([]), player]
+      expect(game.winner).to eq(player)
+    end
+  end
 end

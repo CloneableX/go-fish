@@ -1,4 +1,6 @@
 class Player
+  attr_accessor :score
+  
   def initialize(cards)
     @cards = cards
     @score = 0
@@ -37,5 +39,13 @@ class Player
 
   def receipt_cards(cards)
     @cards.concat(cards)
+  end
+
+  def clear_cards
+    @cards.clear
+  end
+
+  def cards_empty?
+    @cards.empty?
   end
 end

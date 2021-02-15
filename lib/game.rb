@@ -1,8 +1,9 @@
 class Game
   attr_reader :pile
+  attr_writer :players
 
   def initialize
-    pile = Pile.new(nil)
+    @pile = Pile.new(nil)
     @players = [Player.new(pile.deal(7)), ComputerPlayer.new(pile.deal(7))]
     @current_index = 0
   end
@@ -43,5 +44,25 @@ class Game
     player.receipt_cards(cards)
     return true if cards.first == Card.new(asked_rank)
     return false
+  end
+
+  def clear_cards
+    @pile.clear
+    @players.each { |player| player.clear_cards }
+  end
+
+  def start
+    while !cards_empty?
+      play_one_round
+    end
+    return winner
+  end
+
+  def cards_empty?
+    return @pile.empty? && @players.first.cards_empty? && @players.last.cards_empty?
+  end
+
+  def winner
+    return @players.max { |player, other_player| player.score <=> other_player.score }
   end
 end

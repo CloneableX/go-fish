@@ -21,4 +21,12 @@ class Pile
   def deal(card_num)
     @cards.shift(card_num)
   end
+
+  def clear
+    @cards.clear
+  end
+
+  def empty?
+    @cards.empty?
+  end
 end
