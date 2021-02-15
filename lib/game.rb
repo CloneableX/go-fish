@@ -31,7 +31,7 @@ class Game
     return true
   end
 
-  def start
+  def play_one_round
     rank = current_player.ask
     ask_result = ask_card(current_player, other_player, rank)
     deal_result = deal_card(current_player, rank) unless ask_result 

@@ -41,12 +41,12 @@ describe Game do
     end
   end
 
-  describe '#start' do
+  describe '#play_one_round' do
     it 'should continue ask when ask cards successfully' do
       allow(game.current_player).to receive(:ask).and_return(1)
       current_player = game.current_player
       allow(game).to receive(:ask_card).and_return(true)
-      game.start
+      game.play_one_round
       expect(game.current_player).to eq(current_player)
     end
 
@@ -55,7 +55,7 @@ describe Game do
       current_player = game.current_player
       allow(game).to receive(:ask_card).and_return(false)
       allow(game).to receive(:deal_card).and_return(true)
-      game.start
+      game.play_one_round
       expect(game.current_player).to eq(current_player)
     end
 
@@ -64,7 +64,7 @@ describe Game do
       current_player = game.current_player
       allow(game).to receive(:ask_card).and_return(false)
       allow(game).to receive(:deal_card).and_return(false)
-      game.start
+      game.play_one_round
       expect(game.current_player).to_not eq(current_player)
     end
   end
